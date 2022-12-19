@@ -1,0 +1,111 @@
+--DUhhh
+
+local MODMENUHAXER = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TNNZ = Instance.new("TextButton")
+local FCPU = Instance.new("TextButton")
+local ModMenuName = Instance.new("TextLabel")
+local FV = Instance.new("TextButton")
+local Vitctm = Instance.new("TextBox")
+
+--Properties:
+
+MODMENUHAXER.Name = "MODMENUHAXER"
+MODMENUHAXER.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+MODMENUHAXER.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+MODMENUHAXER.ResetOnSpawn = false
+
+Frame.Parent = MODMENUHAXER
+Frame.Active = true
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Position = UDim2.new(0.0434782617, 0, 0.157667384, 0)
+Frame.Size = UDim2.new(0, 172, 0, 210)
+
+TNNZ.Name = "TNNZ"
+TNNZ.Parent = Frame
+TNNZ.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TNNZ.Position = UDim2.new(0.145348832, 0, 0.0774193555, 0)
+TNNZ.Size = UDim2.new(0, 122, 0, 23)
+TNNZ.Font = Enum.Font.SourceSans
+TNNZ.Text = "Toggle Nono Zone"
+TNNZ.TextColor3 = Color3.fromRGB(0, 0, 0)
+TNNZ.TextSize = 14.000
+
+FCPU.Name = "FCPU"
+FCPU.Parent = Frame
+FCPU.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+FCPU.Position = UDim2.new(0.145348832, 0, 0.290322602, 0)
+FCPU.Size = UDim2.new(0, 122, 0, 23)
+FCPU.Font = Enum.Font.SourceSans
+FCPU.Text = "This Button is fake"
+FCPU.TextColor3 = Color3.fromRGB(0, 0, 0)
+FCPU.TextSize = 14.000
+
+ModMenuName.Name = "ModMenuName"
+ModMenuName.Parent = Frame
+ModMenuName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ModMenuName.BackgroundTransparency = 1.000
+ModMenuName.Position = UDim2.new(0, 0, -0.148387089, 0)
+ModMenuName.Size = UDim2.new(0, 172, 0, 31)
+ModMenuName.Font = Enum.Font.SourceSansBold
+ModMenuName.Text = "Mod Menu for Floor is lava"
+ModMenuName.TextColor3 = Color3.fromRGB(0, 0, 0)
+ModMenuName.TextSize = 14.000
+
+FV.Name = "FV"
+FV.Parent = Frame
+FV.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+FV.Position = UDim2.new(0.145348832, 0, 0.495238125, 0)
+FV.Size = UDim2.new(0, 122, 0, 23)
+FV.Font = Enum.Font.SourceSans
+FV.Text = "Fling Vitctm"
+FV.TextColor3 = Color3.fromRGB(0, 0, 0)
+FV.TextSize = 14.000
+
+Vitctm.Name = "Vitctm"
+Vitctm.Parent = FV
+Vitctm.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Vitctm.Position = UDim2.new(0.147540987, 0, 1.34782612, 0)
+Vitctm.Size = UDim2.new(0, 86, 0, 17)
+Vitctm.Font = Enum.Font.SourceSansBold
+Vitctm.PlaceholderText = "Vitctm"
+Vitctm.Text = ""
+Vitctm.TextColor3 = Color3.fromRGB(0, 0, 0)
+Vitctm.TextScaled = true
+Vitctm.TextSize = 14.000
+Vitctm.TextWrapped = true
+Frame.Draggable = true
+local MAD = false
+FV.MouseButton1Click:Connect(function()
+	
+	local ShortFling = Instance.new("BodyThrust")
+	ShortFling.Location = Vector3.new(900000,1200000,900000)
+	ShortFling.Force = Vector3.new(900,900,900)
+	ShortFling.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+	MAD = true
+    wait(2)
+    MAD = false
+	ShortFling:Destroy()
+end)
+local Toggle = false
+local CF
+TNNZ.MouseButton1Click:Connect(function()
+	Toggle = not Toggle
+	if Toggle == false then
+		wait(1)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CF
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,40,0)
+	else
+		CF = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame		
+	end
+end)
+game["Run Service"].Heartbeat:Connect(function()
+	if Toggle == true then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(900,900,900)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,1,90)
+	end
+    if MAD == true then
+        local Vitctm = game.Players:FindFirstChild(Vitctm.Text).Character
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Vitctm.HumanoidRootPart.CFrame
+    end
+end)
